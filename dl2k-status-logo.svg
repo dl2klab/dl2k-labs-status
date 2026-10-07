@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">DL2K Labs Status</title>
+  <desc id="desc">Radar-style DL2K Labs status mark</desc>
+  <rect width="128" height="128" rx="28" fill="#06100d"/>
+  <circle cx="64" cy="64" r="43" fill="none" stroke="#87ffbc" stroke-opacity=".30" stroke-width="2"/>
+  <circle cx="64" cy="64" r="28" fill="none" stroke="#87ffbc" stroke-opacity=".20" stroke-width="2"/>
+  <circle cx="64" cy="64" r="13" fill="#87ffbc" fill-opacity=".08" stroke="#87ffbc" stroke-opacity=".34" stroke-width="2"/>
+  <path d="M64 16v96M16 64h96" stroke="#87ffbc" stroke-opacity=".12" stroke-width="1"/>
+  <path d="M64 64L98 38" stroke="#87ffbc" stroke-opacity=".65" stroke-width="2"/>
+  <circle cx="98" cy="38" r="5" fill="#87ffbc"/>
+  <circle cx="98" cy="38" r="10" fill="none" stroke="#87ffbc" stroke-opacity=".18" stroke-width="3"/>
+  <text x="64" y="70" text-anchor="middle" fill="#effff8" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="1">DL2K</text>
+  <text x="64" y="84" text-anchor="middle" fill="#87ffbc" font-family="Arial, sans-serif" font-size="7" font-weight="700" letter-spacing="2">LABS</text>
+</svg>
