@@ -1,31 +1,92 @@
-# Change these first
-owner: upptime # Your GitHub organization or username, where this repository lives
-repo: upptime # The name of this repository
+# DL2K Labs public status page
+# Engine: Upptime (GitHub Actions + Issues + Pages)
+# Staging mode: GitHub Pages project URL first; custom domain enabled after verification.
+
+owner: dl2klab
+repo: dl2k-labs-status
+user-agent: dl2k-labs-status
+
+# Preserve short incidents in public history instead of deleting incidents
+# that resolve within 15 minutes.
+skipDeleteIssues: true
+
+# No application/API secrets are required for these public checks.
+secrets: []
 
 sites:
-  - name: Google
-    url: https://www.google.com
-  - name: Wikipedia
-    url: https://en.wikipedia.org
-  - name: Hacker News
-    url: https://news.ycombinator.com
-  - name: Secret Site
-    url: $SECRET_SITE
+  - name: Akash Provider API
+    slug: akash-provider-api
+    url: https://provider.dl2klab.co.za:8443/status
+    method: GET
+    expectedStatusCodes:
+      - 200
+    maxResponseTime: 5000
+
+  - name: Akash Provider gRPC
+    slug: akash-provider-grpc
+    check: tcp-ping
+    url: provider.dl2klab.co.za
+    port: 8444
+
+  - name: Akash Public Ingress
+    slug: akash-public-ingress
+    check: tcp-ping
+    url: provider.dl2klab.co.za
+    port: 443
+
+# Launch checks to add once their public endpoints are live:
+#
+#  - DL2K Labs Website
+#      https://dl2klab.co.za/
+#      HTTP 200 + body must contain "DL2K Labs"
+#
+#  - Sia Consensus
+#      sia.dl2klab.co.za:9981
+#
+#  - Sia RHP4 Storage Traffic
+#      sia.dl2klab.co.za:9984
+#
+# Keeping these disabled during staging prevents intentional pre-launch
+# DNS/parking-page states from creating false public incidents.
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: demo.upptime.js.org
-  # baseUrl: /your-repo-name
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  baseUrl: /dl2k-labs-status
+  name: DL2K Labs Status
+  logoUrl: https://dl2klab.github.io/dl2k-labs-status/dl2k-status-logo.svg
+  faviconSvg: https://dl2klab.github.io/dl2k-labs-status/dl2k-status-logo.svg
+  themeUrl: https://dl2klab.github.io/dl2k-labs-status/dl2k-theme.css
+  introTitle: "**Infrastructure status.** No spin — just the current state."
+  introMessage: "Independent public monitoring for DL2K Labs compute, ingress and storage services. Checks run outside the DL2K homelab using GitHub Actions."
   navbar:
     - title: Status
-      href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+      href: /dl2k-labs-status/
+    - title: DL2K Labs
+      href: https://dl2klab.co.za/
+  metaTags:
+    - name: description
+      content: Public uptime, response-time and incident history for DL2K Labs infrastructure.
+    - name: theme-color
+      content: "#06100d"
+    - name: color-scheme
+      content: dark
+    - name: robots
+      content: noindex, nofollow
+  robotsText: |-
+    User-agent: *
+    Disallow: /
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+workflowSchedule:
+  graphs: "0 0 * * *"
+  responseTime: "0 23 * * *"
+  staticSite: "0 1 * * *"
+  summary: "0 0 * * *"
+  updateTemplate: "0 0 * * 0"
+  updates: "0 3 * * *"
+  uptime: "*/5 * * * *"
+
+i18n:
+  footer: "DL2K Labs Status · Powered by [Upptime](https://upptime.js.org)"
+
+commitMessages:
+  commitAuthorName: "DL2K Status Bot"
+  commitAuthorEmail: "41898282+github-actions[bot]@users.noreply.github.com"
