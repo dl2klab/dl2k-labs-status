@@ -1,6 +1,6 @@
 # DL2K Labs public status page
 # Engine: Upptime (GitHub Actions + Issues + Pages)
-# Staging mode: GitHub Pages project URL first; custom domain enabled after verification.
+# Production status domain: https://status.dl2klab.co.za
 
 owner: dl2klab
 repo: dl2k-labs-status
@@ -14,6 +14,15 @@ skipDeleteIssues: true
 secrets: []
 
 sites:
+  - name: DL2K Labs Website
+    slug: dl2k-labs-website
+    url: https://dl2klab.co.za/
+    method: GET
+    expectedStatusCodes:
+      - 200
+    __dangerous__body_down_if_text_missing: "DL2K Labs"
+    maxResponseTime: 5000
+
   - name: Akash Provider API
     slug: akash-provider-api
     url: https://provider.dl2klab.co.za:8443/status
@@ -34,32 +43,29 @@ sites:
     url: provider.dl2klab.co.za
     port: 443
 
-# Launch checks to add once their public endpoints are live:
-#
-#  - DL2K Labs Website
-#      https://dl2klab.co.za/
-#      HTTP 200 + body must contain "DL2K Labs"
-#
-#  - Sia Consensus
-#      sia.dl2klab.co.za:9981
-#
-#  - Sia RHP4 Storage Traffic
-#      sia.dl2klab.co.za:9984
-#
-# Keeping these disabled during staging prevents intentional pre-launch
-# DNS/parking-page states from creating false public incidents.
+  - name: Sia Consensus
+    slug: sia-consensus
+    check: tcp-ping
+    url: sia.dl2klab.co.za
+    port: 9981
+
+  - name: Sia RHP4 Storage Traffic
+    slug: sia-rhp4-storage-traffic
+    check: tcp-ping
+    url: sia.dl2klab.co.za
+    port: 9984
 
 status-website:
-  baseUrl: /dl2k-labs-status
+  cname: status.dl2klab.co.za
   name: DL2K Labs Status
-  logoUrl: https://dl2klab.github.io/dl2k-labs-status/dl2k-status-logo.svg
-  faviconSvg: https://dl2klab.github.io/dl2k-labs-status/dl2k-status-logo.svg
-  themeUrl: https://dl2klab.github.io/dl2k-labs-status/dl2k-theme.css
+  logoUrl: https://status.dl2klab.co.za/dl2k-status-logo.svg
+  faviconSvg: https://status.dl2klab.co.za/dl2k-status-logo.svg
+  themeUrl: https://status.dl2klab.co.za/dl2k-theme.css
   introTitle: "**Infrastructure status.** No spin — just the current state."
   introMessage: "Independent public monitoring for DL2K Labs compute, ingress and storage services. Checks run outside the DL2K homelab using GitHub Actions."
   navbar:
     - title: Status
-      href: /dl2k-labs-status/
+      href: /
     - title: DL2K Labs
       href: https://dl2klab.co.za/
   metaTags:
@@ -69,11 +75,9 @@ status-website:
       content: "#06100d"
     - name: color-scheme
       content: dark
-    - name: robots
-      content: noindex, nofollow
   robotsText: |-
     User-agent: *
-    Disallow: /
+    Allow: /
 
 workflowSchedule:
   graphs: "0 0 * * *"
