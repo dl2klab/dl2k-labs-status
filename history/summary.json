@@ -22,7 +22,7 @@
     "url": "https://provider.dl2klab.co.za:8443/status",
     "icon": "https://icons.duckduckgo.com/ip3/provider.dl2klab.co.za.ico",
     "slug": "akash-provider-api",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
@@ -40,7 +40,7 @@
     "url": "provider.dl2klab.co.za",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "akash-provider-grpc",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
     "uptimeDay": "100.00%",
     "uptimeWeek": "100.00%",
@@ -58,9 +58,9 @@
     "url": "provider.dl2klab.co.za",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "akash-public-ingress",
-    "status": "up",
+    "status": "down",
     "uptime": "100.00%",
-    "uptimeDay": "100.00%",
+    "uptimeDay": "99.99%",
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
@@ -69,7 +69,9 @@
     "timeWeek": 264,
     "timeMonth": 251,
     "timeYear": 252,
-    "dailyMinutesDown": {}
+    "dailyMinutesDown": {
+      "2026-11-25": 0
+    }
   },
   {
     "name": "Sia Consensus",
